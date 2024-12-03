@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запись - VeroMedica Clinic</title>
+    <link rel="stylesheet" href="Css/styles5.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">VeroMedica</div>
+            <nav class="nav-menu">
+                <a href="index.html">Главная</a>
+                <a href="О клинике.html">О клинике</a>
+                <a href="Прайс.html">Прайс</a>
+                <a href="Запись.html">Запись</a>
+                <a href="Контакты.html">Контакты</a>
+            </nav>
+            <a href="#" class="btn primary-btn" id="openModal">Онлайн запись</a>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Онлайн запись</h2>
+                    <form id="appointmentForm">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="text" id="city" placeholder="Ваш город" required>
+                        <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+
+                        <label for="doctor">Выберите врача:</label>
+                        <select id="doctor" required>
+                            <option value="" disabled selected>Выберите врача</option>
+                            <option value="doctor1">Доктор Иванов</option>
+                            <option value="doctor2">Доктор Петров</option>
+                            <option value="doctor3">Доктор Сидоров</option>
+                        </select>
+
+                        <label for="date">Выберите дату:</label>
+                        <input type="date" id="date" required>
+                        <p id="dateError" style="color: red; display: none;">Эта дата недоступна для записи.</p>
+
+                        <button type="submit" class="btn submit-btn">Записаться</button>
+                    </form>
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <span class="checkmark">✔</span>
+                        <p>Ваша запись успешно отправлена!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>   
+
+    <main class="content">
+        <div class="container">
+            <h1>Ваши записи</h1>
+            <div class="appointment-info">
+                <p><strong>Имя пациента:</strong> <span id="patientName">Не указано</span></p>
+                <p><strong>Город:</strong> <span id="patientCity">Не указан</span></p>
+                <p><strong>Номер телефона:</strong> <span id="patientPhone">Не указан</span></p>
+                <p><strong>Выбранный врач:</strong> <span id="selectedDoctor">Не выбран</span></p>
+                <p><strong>Выбранная дата:</strong> <span id="selectedDate">Не выбрана</span></p>
+            </div>
+    
+            <h2>Доступность врачей</h2>
+            <table class="availability-table">
+                <thead>
+                    <tr>
+                        <th>Врач</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody id="availabilityData">
+                    <tr>
+                        <td>Доктор Иванов</td>
+                        <td>2024-12-05</td>
+                        <td>Занят</td>
+                    </tr>
+                    <tr>
+                        <td>Доктор Петров</td>
+                        <td>2024-12-06</td>
+                        <td>Свободен</td>
+                    </tr>
+                    <tr>
+                        <td>Доктор Сидоров</td>
+                        <td>2024-12-07</td>
+                        <td>Свободен</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="actions">
+            <button class="btn primary-btn" id="viewAllRecords">Посмотреть все записи</button>
+        </div>
+    </main>   
+
+    <script>
+// Работа с модальным окном
+const modal = document.getElementById('modal');
+const openModalBtn = document.getElementById('openModal');
+const closeModalBtn = document.querySelector('.close');
+
+// Открытие модального окна
+openModalBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.style.display = 'flex';
+});
+
+// Закрытие модального окна
+closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Закрытие модального окна при клике вне его
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Массив недоступных дат
+const unavailableDates = ['2024-12-05', '2024-12-10', '2024-12-15', '2024-12-02', '2024-12-17', '2024-12-23', '2024-12-09']; // Пример дат
+
+// Автоматическое добавление +7 в номер телефона и предотвращение его удаления
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneInput = document.getElementById('phone');
+
+    // При фокусе автоматически добавляем +7, если поле пустое
+    phoneInput.addEventListener('focus', function () {
+        if (phoneInput.value === "") {
+            phoneInput.value = "+7";  
+        }
+    });
+
+    // Проверка и добавление +7, если его нет в начале
+    phoneInput.addEventListener('input', function () {
+        if (phoneInput.value.indexOf('+7') !== 0) {
+            phoneInput.value = "+7" + phoneInput.value.replace(/^(\+7)/, '');
+        }
+    });
+
+    // Проверка выбранной даты на недоступность
+    const dateInput = document.getElementById('date');
+    const dateError = document.getElementById('dateError');
+
+    dateInput.addEventListener('input', function () {
+        const selectedDate = dateInput.value;
+        if (unavailableDates.includes(selectedDate)) {
+            dateError.style.display = 'block';
+        } else {
+            dateError.style.display = 'none';
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Получаем данные о записи из localStorage
+    const appointmentData = JSON.parse(localStorage.getItem('appointment'));
+
+    if (appointmentData) {
+        // Отображаем данные о записи на странице
+        document.getElementById('patientName').textContent = appointmentData.name || 'Не указано';
+        document.getElementById('patientCity').textContent = appointmentData.city || 'Не указан';
+        document.getElementById('patientPhone').textContent = appointmentData.phone || 'Не указан';
+        document.getElementById('selectedDoctor').textContent = appointmentData.doctor || 'Не выбран';
+        document.getElementById('selectedDate').textContent = appointmentData.date || 'Не выбрана';
+    }
+});
+
+// Управление модальным окном и успешным сообщением после отправки формы
+document.addEventListener('DOMContentLoaded', function () {
+    const appointmentForm = document.getElementById('appointmentForm');
+    const successMessage = document.getElementById('successMessage');
+    const dateInput = document.getElementById('date'); // Получаем поле даты
+    const dateError = document.getElementById('dateError'); // Получаем элемент для сообщения об ошибке
+
+    // Обработчик отправки формы
+    appointmentForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Останавливаем стандартное поведение формы
+
+        // Получаем значения из формы
+        const name = document.getElementById('name').value;
+        const city = document.getElementById('city').value;
+        const phone = document.getElementById('phone').value;
+        const doctor = document.getElementById('doctor').value;
+        const selectedDate = dateInput.value;
+
+        // Проверка выбранной даты
+        if (unavailableDates.includes(selectedDate)) {
+            // Если дата недоступна, показываем ошибку и не отправляем форму
+            dateError.style.display = 'block';
+        } else {
+            // Если дата доступна, скрываем ошибку и показываем сообщение об успешной записи
+            dateError.style.display = 'none';
+            // Скрываем форму и показываем сообщение об успехе
+            appointmentForm.style.display = 'none';
+            successMessage.style.display = 'block';
+
+            // Обновление информации на странице
+            document.getElementById('patientName').textContent = name;
+            document.getElementById('patientCity').textContent = city;
+            document.getElementById('patientPhone').textContent = phone;
+            document.getElementById('selectedDoctor').textContent = doctor;
+            document.getElementById('selectedDate').textContent = selectedDate;
+
+            // Сохранение данных в localStorage
+            const appointmentData = {
+                name: name,
+                city: city,
+                phone: phone,
+                doctor: doctor,
+                date: selectedDate
+            };
+            localStorage.setItem('appointment', JSON.stringify(appointmentData));
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

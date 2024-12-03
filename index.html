@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeroMedica Clinic</title>
+    <link rel="stylesheet" href="Css/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">VeroMedica</div>
+            <nav class="nav-menu">
+                <a href="index.html">Главная</a>
+                <a href="О клинике.html">О клинике</a>
+                <a href="Прайс.html">Прайс</a>
+                <a href="Запись.html">Запись</a>
+                <a href="Контакты.html">Контакты</a>
+            </nav>
+            <a href="#" class="btn primary-btn" id="openModal">Онлайн запись</a>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Онлайн запись</h2>
+                    <form id="appointmentForm">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="text" id="city" placeholder="Ваш город" required>
+                        <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+
+                        <label for="doctor">Выберите врача:</label>
+                        <select id="doctor" required>
+                            <option value="" disabled selected>Выберите врача</option>
+                            <option value="doctor1">Доктор Иванов</option>
+                            <option value="doctor2">Доктор Петров</option>
+                            <option value="doctor3">Доктор Сидоров</option>
+                        </select>
+
+                        <label for="date">Выберите дату:</label>
+                        <input type="date" id="date" required>
+                        <p id="dateError" style="color: red; display: none;">Эта дата недоступна для записи.</p>
+
+                        <button type="submit" class="btn submit-btn">Записаться</button>
+                    </form>
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <span class="checkmark">✔</span>
+                        <p>Ваша запись успешно отправлена!</p>
+                        <button id="viewRecordsButton" style="display:none;" class="btn submit-btnn">Посмотреть мои записи</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>    
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Здоровье зубов<br>в надежных руках</h1>
+            <p>Семейная стоматология "VeroMedica" - ваш путь к красивой улыбке</p>
+            <!-- Кнопка для открытия модального окна консультации -->
+<a href="#" class="btn primary-btn" id="openConsultationModal">Заказать консультацию</a>
+
+<!-- Модальное окно для консультации -->
+<div id="consultationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Заказать консультацию</h2>
+        <form id="consultationForm">
+            <input type="text" id="name" placeholder="Ваше имя" required>
+            <input type="text" id="city" placeholder="Ваш город" required>
+            <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+
+            <label for="doctor">Выберите врача:</label>
+            <select id="doctor" required>
+                <option value="" disabled selected>Выберите врача</option>
+                <option value="doctor1">Доктор Иванов</option>
+                <option value="doctor2">Доктор Петров</option>
+                <option value="doctor3">Доктор Сидоров</option>
+            </select>
+
+            <label for="date">Выберите дату:</label>
+            <input type="date" id="date" required>
+            <p id="dateError" style="color: red; display: none;">Эта дата недоступна для записи. Попробуйте другие дни!</p>
+
+            <button type="submit" class="btn submit-btn">Записаться</button>
+        </form>
+        <div id="consultationSuccessMessage" class="success-message" style="display: none;">
+            <span class="checkmark">✔</span>
+            <p>Ваша консультация успешно заказана!</p>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </section>           
+
+    <div class="promo-wrapper">
+        <div class="promo-container">
+            <h1>Акционные скидки на наши услуги</h1>
+            <p>Мы предлагаем лучшие акционные скидки на наши услуги и товары. <br>Посетите наш Instagram для получения дополнительной информации!</p>
+            <a href="https://www.instagram.com/dentko_aktobe/" target="_blank" class="promo-button">Перейти в Instagram</a>
+        </div>
+    </div>
+
+    <div class="wrapper1">
+        <h1>Наши преимущества</h1>
+    
+        <div class="line1">
+            <div class="line-item">
+                <h2>Современные технологии</h2>
+                <p>В VeroMedica Clinic мы используем только передовые медицинские технологии и оборудование, что позволяет нам достигать исключительных результатов в лечении. Наши специалисты работают с самыми современными инструментами, что обеспечивает точность, безопасность и эффективность каждого вмешательства.</p>
+            </div>
+            <div class="line-item">
+                <h2>Профессионализм и опыт наших специалистов</h2>
+                <p>В VeroMedica Clinic работают только высококвалифицированные стоматологи с многолетним опытом и глубокими знаниями в своей области. Каждый наш специалист прошел строгий отбор и регулярно обновляет свои знания, чтобы обеспечивать пациентам лечение самого высокого уровня.</p>
+            </div>
+        </div>
+    
+        <div class="line2">
+            <div class="line-item">
+                <h2>Первая консультация — бесплатно</h2>
+                <p>В VeroMedica Clinic мы предлагаем бесплатную первую консультацию и диагностику полости рта. Наши специалисты тщательно оценят ваше состояние, дадут рекомендации и помогут выбрать оптимальный план лечения, основываясь на ваших потребностях и пожеланиях.</p>
+            </div>
+            <div class="line-item">
+                <h2>Гибкая система оплаты</h2>
+                <p>В VeroMedica Clinic мы понимаем, как важно заботиться о своем здоровье без лишних финансовых переживаний. Поэтому мы предлагаем гибкую систему оплаты, включая рассрочку 0% и возможности кредитования.</p>
+            </div>
+        </div>
+    
+        <div class="line3">
+            <div class="line-item">
+                <h2>Точный диагноз</h2>
+                <p>В VeroMedica Clinic мы уверены, что точный диагноз — это ключ к успешному лечению. Использование новейшего рентгеновского оборудования Planmeca3D Mid позволяет нам получить высококачественные 3D-снимки, которые выявляют проблемы, не видимые на обычных рентгеновских изображениях.</p>
+            </div>
+            <div class="line-item">
+                <h2>Новейшие технологии</h2>
+                <p>В VeroMedica Clinic мы используем передовые технологии для достижения безупречных результатов. Наша собственная зуботехническая лаборатория с системой CAD/CAM позволяет изготавливать зубные протезы с высокой точностью с использованием компьютерного моделирования.</p>
+            </div>
+        </div>
+    
+        <div class="line4">
+            <div class="line-item">
+                <h2>Стерильность оборудования</h2>
+                <p>В VeroMedica Clinic безопасность наших пациентов — наш главный приоритет. Мы обеспечиваем надежную защиту на каждом этапе лечения, используя индивидуальные стерильные наборы и инструменты, которые проходят строгую обработку и упаковываются в герметичные упаковки.</p>
+            </div>
+            <div class="line-item">
+                <h2>Доступность для всех</h2>
+                <p>В VeroMedica Clinic мы стремимся создать удобные условия для всех пациентов, включая людей с ограниченными возможностями. Для этого наше здание оснащено современным электрическим пандусом, который обеспечивает легкий и безопасный доступ в клинику, делая медицинские услуги доступными для каждого.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper4 services">
+        <h2>Как мы можем сделать Вас счастливее?</h2>
+        <p>Мы предлагаем нашим клиентам все виды эстетической и лечебной стоматологии</p>
+        
+        <div class="service-item">
+            <div class="service-title">
+                <span>Наши новинки</span>
+                <span class="plus" data-target="content1">+</span>
+            </div>
+            <div class="service-content" id="content1">
+                <p>Мы предлагаем инновационные услуги:</p>
+                <ul>
+                    <li>3D-моделирование улыбки — <strong>20,000 ₸</strong></li>
+                    <li>Реставрация зубов новым материалом — <strong>15,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Если зуб болит</span>
+                <span class="plus" data-target="content2">+</span>
+            </div>
+            <div class="service-content" id="content2">
+                <p>Экстренная помощь:</p>
+                <ul>
+                    <li>Диагностика и консультация — <strong>5,000 ₸</strong></li>
+                    <li>Пломбирование зуба — <strong>12,000 ₸</strong></li>
+                    <li>Удаление зуба мудрости — <strong>25,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Если зуб разрушен или отсутствует</span>
+                <span class="plus" data-target="content3">+</span>
+            </div>
+            <div class="service-content" id="content3">
+                <p>Мы предлагаем:</p>
+                <table>
+                    <tr>
+                        <th>Услуга</th>
+                        <th>Цена</th>
+                    </tr>
+                    <tr>
+                        <td>Имплантация</td>
+                        <td>120,000 ₸</td>
+                    </tr>
+                    <tr>
+                        <td>Керамическая коронка</td>
+                        <td>80,000 ₸</td>
+                    </tr>
+                    <tr>
+                        <td>Металлокерамика</td>
+                        <td>70,000 ₸</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Чтобы зубы не болели</span>
+                <span class="plus" data-target="content4">+</span>
+            </div>
+            <div class="service-content" id="content4">
+                <p>Регулярная профилактика:</p>
+                <ul>
+                    <li>Гигиеническая чистка зубов — <strong>10,000 ₸</strong></li>
+                    <li>Фторирование зубов — <strong>5,000 ₸</strong></li>
+                    <li>Удаление зубного налета — <strong>8,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Особый уход</span>
+                <span class="plus" data-target="content5">+</span>
+            </div>
+            <div class="service-content" id="content5">
+                <p>Мы уделяем внимание каждому пациенту:</p>
+                <ul>
+                    <li>Детская стоматология — <strong>7,000 ₸</strong></li>
+                    <li>Особый подход для пожилых пациентов</li>
+                    <li>Обезболивание процедур — <strong>3,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Выровнять зубы, прикус</span>
+                <span class="plus" data-target="content6">+</span>
+            </div>
+            <div class="service-content" id="content6">
+                <p>Мы предлагаем:</p>
+                <ul>
+                    <li>Брекеты (металлические) — <strong>200,000 ₸</strong></li>
+                    <li>Элайнеры (прозрачные капы) — <strong>250,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Сделать зубы белыми</span>
+                <span class="plus" data-target="content7">+</span>
+            </div>
+            <div class="service-content" id="content7">
+                <p>Услуги отбеливания:</p>
+                <ul>
+                    <li>Лазерное отбеливание — <strong>60,000 ₸</strong></li>
+                    <li>Домашнее отбеливание (система) — <strong>30,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Гигиена полости рта</span>
+                <span class="plus" data-target="content8">+</span>
+            </div>
+            <div class="service-content" id="content8">
+                <p>Для поддержания здоровья:</p>
+                <ul>
+                    <li>Комплексная чистка зубов — <strong>10,000 ₸</strong></li>
+                    <li>Удаление налета AirFlow — <strong>12,000 ₸</strong></li>
+                    <li>Реминерализация эмали — <strong>15,000 ₸</strong></li>
+                </ul>
+            </div>
+        </div>
+    
+        <div class="service-item">
+            <div class="service-title">
+                <span>Если Вы живете не в Актобе</span>
+                <span class="plus" data-target="content9">+</span>
+            </div>
+            <div class="service-content" id="content9">
+                <p>Для иногородних пациентов:</p>
+                <ul>
+                    <li>Удобное расписание процедур</li>
+                    <li>Экспресс-услуги (лечение за 1-2 дня)</li>
+                </ul>
+            </div>
+        </div>
+    </div>       
+
+    <div class="reviews">
+        <h2>Отзывы наших пациентов</h2>
+        <div class="review-carousel">
+            <div class="review-container">
+                <div class="review">
+                    <p>
+                        Отличная клиника! Сделали зубы белыми за пару сеансов, результат превзошел все ожидания. Очень благодарна всем сотрудникам, особенно стоматологу Калыкбаевой Ж.Т. Теперь только сюда!
+                    </p>
+                    <span class="author">С уважением, Татьяна Л.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Я записалась на консультацию по поводу имплантации. Врач осмотрел, все объяснил, ответил на все вопросы. Атмосфера в клинике очень приятная. Очень довольна, буду рекомендовать друзьям!
+                    </p>
+                    <span class="author">С уважением, Анна М.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Хочу выразить благодарность клинике за отличную работу. Проходил лечение зубов у доктора Смирнова А.Г. Всё прошло на высшем уровне, без боли и дискомфорта.
+                    </p>
+                    <span class="author">С уважением, Павел С.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Первый раз была у вас. Обслуживание класс, очень понравилось. Врач стоматолог Калыкбаева Ж.Т. огромное вам спасибо. Успехов и процветания вашему коллективу!
+                    </p>
+                    <span class="author">С уважением, Исанова Баян К.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Посетили Вашу клинику по рекомендации моей семьи, а именно были на приеме у врача стоматолога Калыкбаевой Ж.Т. Спасибо за прекрасное обслуживание!
+                    </p>
+                    <span class="author">С уважением, Джамалдиев Ислам.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Очень довольна качеством обслуживания! Спасибо врачам за внимание и профессионализм!
+                    </p>
+                    <span class="author">С уважением, Оксана П.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Отличная стоматология! Лечили зубы всей семьей. Спасибо за высокий уровень обслуживания и дружелюбный персонал!
+                    </p>
+                    <span class="author">С уважением, Виктория Д.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Проходил лечение и чистку зубов, доктор сделал всё быстро и безболезненно. Прекрасный сервис и отличное оборудование!
+                    </p>
+                    <span class="author">С уважением, Алексей Р.</span>
+                </div>
+                <div class="review">
+                    <p>
+                        Лучшая стоматология в городе! Всё прошло идеально, обязательно вернусь ещё. Спасибо!
+                    </p>
+                    <span class="author">С уважением, Сергей Н.</span>
+                </div>
+            </div>
+        </div>
+    </div>    
+        
+    <div class="clinic-map">
+        <h3>Наш адрес</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112372.50507872734!2d57.166646!3d50.283822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x41c72d4b7b7b5d27%3A0x8f7682b94a5c6795!2z0JjQs9C60LrQvdCw!5e0!3m2!1sru!2sru!4v1732523171609&zoom=15" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>   
+
+        <div class="footer">
+            <div class="footer-logo">
+                <h1>VeroMedica</h1>
+                <p>&copy; 2010, VeroMedica - стоматологическая клиника</p>
+            </div>
+        </div>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+    const unavailableDates = [
+        "2024-12-01", "2024-12-02", "2024-12-05", "2024-12-17", "2024-12-10",
+        "2024-12-29", "2024-12-15", "2024-12-12", "2024-12-09", "2024-12-25"
+    ];
+
+    const appointmentForm = document.getElementById('appointmentForm');
+    const successMessage = document.getElementById('successMessage');
+    const dateInput = document.getElementById('date');
+    const dateError = document.getElementById('dateError');
+    const viewRecordsButton = document.getElementById('viewRecordsButton'); // Получаем кнопку
+
+    // Обработчик отправки формы
+    appointmentForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Останавливаем стандартное поведение формы
+
+        const selectedDate = dateInput.value;
+        const selectedDoctor = document.getElementById('doctor').value;
+        const name = document.getElementById('name').value;
+        const city = document.getElementById('city').value;
+        const phone = document.getElementById('phone').value;
+
+        if (unavailableDates.includes(selectedDate)) {
+            // Если дата недоступна, показываем ошибку и не отправляем форму
+            dateError.style.display = 'block';
+        } else {
+            // Если дата доступна, скрываем ошибку и показываем сообщение об успехе
+            dateError.style.display = 'none';
+            appointmentForm.style.display = 'none';
+            successMessage.style.display = 'block';
+
+            // Сохраняем информацию о записи в localStorage
+            localStorage.setItem('appointment', JSON.stringify({
+                name: name,
+                city: city,
+                phone: phone,
+                doctor: selectedDoctor,
+                date: selectedDate
+            }));
+
+            // Показываем кнопку "Посмотреть мои записи"
+            if (viewRecordsButton) {
+                viewRecordsButton.style.display = 'inline-block';
+                viewRecordsButton.addEventListener("click", () => {
+                    window.location.href = "Запись.html";
+                });
+            }
+
+            // Автоматическое закрытие через 5 секунд
+            setTimeout(() => {
+                if (modal) {
+                    modal.style.display = "none";
+                }
+                appointmentForm.style.display = "block"; // Восстановить отображение формы
+                successMessage.style.display = "none"; // Скрыть сообщение об успехе
+                if (viewRecordsButton) viewRecordsButton.style.display = "none"; // Скрыть кнопку
+            }, 5000);
+        }
+    });
+
+    // Функция для настройки модальных окон
+    function setupModal(modalId, openButtonId, closeButtonClass, formId, successMessageId) {
+        const modal = document.getElementById(modalId);
+        const openButton = document.getElementById(openButtonId);
+        const closeButton = modal.querySelector(closeButtonClass);
+        const form = document.getElementById(formId);
+        const successMessage = document.getElementById(successMessageId);
+        const dateInput = form.querySelector("#date");
+        const dateError = form.querySelector("#dateError");
+
+        // Проверка недоступных дат
+        if (dateInput) {
+            dateInput.addEventListener("change", () => {
+                const selectedDate = dateInput.value;
+                if (unavailableDates.includes(selectedDate)) {
+                    dateError.style.display = "block";
+                    dateInput.value = ""; // Сбросить некорректную дату
+                } else {
+                    dateError.style.display = "none";
+                }
+            });
+        }
+
+        // Открытие модального окна
+        openButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.style.display = "flex";
+        });
+
+        // Закрытие модального окна
+        closeButton.addEventListener("click", () => {
+            modal.style.display = "none";
+        });
+
+        // Закрытие при клике вне модального окна
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        });
+    }
+
+    // Настройка модальных окон
+    setupModal("modal", "openModal", ".close", "appointmentForm", "successMessage");
+    setupModal("consultationModal", "openConsultationModal", ".close", "consultationForm", "consultationSuccessMessage");
+
+    // Если необходимо, для отображения записанных данных на странице "Запись.html"
+    if (window.location.href.includes("Запись.html")) {
+        const savedAppointment = JSON.parse(localStorage.getItem('appointment'));
+        if (savedAppointment && document.getElementById('appointmentInfo')) {
+            document.getElementById('appointmentInfo').innerHTML = `
+                <p>Имя: ${savedAppointment.name}</p>
+                <p>Город: ${savedAppointment.city}</p>
+                <p>Телефон: ${savedAppointment.phone}</p>
+                <p>Врач: ${savedAppointment.doctor === "Врач Иванов" ? "Врач Иванов" : 
+                          savedAppointment.doctor === "doctor2" ? "Врач Петров" : 
+                          savedAppointment.doctor === "doctor3" ? "Врач Сидоров" : "Неизвестный врач"}</p>
+                <p>Дата: ${savedAppointment.date}</p>
+            `;
+        }
+    }
+});
+
+
+
+</script> 
+</body>
+</html>

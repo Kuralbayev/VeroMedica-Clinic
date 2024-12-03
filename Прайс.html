@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VeroMedica Clinic</title>
+    <link rel="stylesheet" href="Css/styles4.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">VeroMedica</div>
+            <nav class="nav-menu">
+                <a href="index.html">Главная</a>
+                <a href="О клинике.html">О клинике</a>
+                <a href="Прайс.html">Прайс</a>
+                <a href="Запись.html">Запись</a>
+                <a href="Контакты.html">Контакты</a>
+            </nav>
+            <a href="#" class="btn primary-btn" id="openModal">Онлайн запись</a>
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Онлайн запись</h2>
+                    <form id="appointmentForm">
+                        <input type="text" id="name" placeholder="Ваше имя" required>
+                        <input type="text" id="city" placeholder="Ваш город" required>
+                        <input type="tel" id="phone" placeholder="Ваш номер телефона" required>
+
+                        <label for="doctor">Выберите врача:</label>
+                        <select id="doctor" required>
+                            <option value="" disabled selected>Выберите врача</option>
+                            <option value="doctor1">Доктор Иванов</option>
+                            <option value="doctor2">Доктор Петров</option>
+                            <option value="doctor3">Доктор Сидоров</option>
+                        </select>
+
+                        <label for="date">Выберите дату:</label>
+                        <input type="date" id="date" required>
+                        <p id="dateError" style="color: red; display: none;">Эта дата недоступна для записи.</p>
+
+                        <button type="submit" class="btn submit-btn">Записаться</button>
+                    </form>
+                    <div id="successMessage" class="success-message" style="display: none;">
+                        <span class="checkmark">✔</span>
+                        <p>Ваша запись успешно отправлена!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="pricing">
+        <h2>Наши услуги и цены</h2>
+        <div class="pricing-category">
+            <h3>Диагностика</h3>
+            <div class="pricing-items">
+                <div class="price-item">
+                    <h4>Дентальный снимок</h4>
+                    <p>От <strong>1,500 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Панорамный снимок</h4>
+                    <p>От <strong>4,500 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Компьютерная 3D томография</h4>
+                    <p>От <strong>3,000 ₸</strong> до <strong>20,000 ₸</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-category">
+            <h3>Терапевтическое лечение</h3>
+            <div class="pricing-items">
+                <div class="price-item">
+                    <h4>Лечение кариеса</h4>
+                    <p>От <strong>25,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Лечение пульпита</h4>
+                    <p>От <strong>40,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Лечение периодонтита</h4>
+                    <p>От <strong>45,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Лечение кисты зуба</h4>
+                    <p>От <strong>15,000 ₸</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-category">
+            <h3>Удаление зубов</h3>
+            <div class="pricing-items">
+                <div class="price-item">
+                    <h4>Удаление зуба мудрости</h4>
+                    <p>От <strong>18,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Удаление аппаратом Пьезотом</h4>
+                    <p>От <strong>30,000 ₸</strong></p>
+                </div>
+            </div>
+        </div>
+        <div class="pricing-category">
+            <h3>Протезирование зубов</h3>
+            <div class="pricing-items">
+                <div class="price-item">
+                    <h4>Керамическое протезирование на основе диоксида циркония</h4>
+                    <p>От <strong>100,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Мостовидные протезы</h4>
+                    <p>От <strong>50,000 ₸</strong></p>
+                </div>
+                <div class="price-item">
+                    <h4>Металлокерамика</h4>
+                    <p>От <strong>40,000 ₸</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+
+    <div class="footer">
+        <div class="footer-logo">
+            <h1>VeroMedica</h1>
+            <p>&copy; 2010, VeroMedica - стоматологическая клиника</p>
+        </div>
+    </div>
+<script>
+// Работа с модальным окном
+const modal = document.getElementById('modal');
+const openModalBtn = document.getElementById('openModal');
+const closeModalBtn = document.querySelector('.close');
+
+// Открытие модального окна
+openModalBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.style.display = 'flex';
+});
+
+// Закрытие модального окна
+closeModalBtn.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Закрытие модального окна при клике вне его
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Массив недоступных дат
+const unavailableDates = ['2024-12-05', '2024-12-10', '2024-12-15', '2024-12-02', '2024-12-17', '2024-12-23', '2024-12-09']; // Пример дат
+
+// Автоматическое добавление +7 в номер телефона и предотвращение его удаления
+document.addEventListener('DOMContentLoaded', function () {
+    const phoneInput = document.getElementById('phone');
+
+    // При фокусе автоматически добавляем +7, если поле пустое
+    phoneInput.addEventListener('focus', function () {
+        if (phoneInput.value === "") {
+            phoneInput.value = "+7";  
+        }
+    });
+
+    // Проверка и добавление +7, если его нет в начале
+    phoneInput.addEventListener('input', function () {
+        if (phoneInput.value.indexOf('+7') !== 0) {
+            phoneInput.value = "+7" + phoneInput.value.replace(/^(\+7)/, '');
+        }
+    });
+
+    // Проверка выбранной даты на недоступность
+    const dateInput = document.getElementById('date');
+    const dateError = document.getElementById('dateError');
+
+    dateInput.addEventListener('input', function () {
+        const selectedDate = dateInput.value;
+        if (unavailableDates.includes(selectedDate)) {
+            dateError.style.display = 'block';
+        } else {
+            dateError.style.display = 'none';
+        }
+    });
+});
+
+// Управление модальным окном и успешным сообщением после отправки формы
+document.addEventListener('DOMContentLoaded', function () {
+    const appointmentForm = document.getElementById('appointmentForm');
+    const successMessage = document.getElementById('successMessage');
+    const dateInput = document.getElementById('date'); // Получаем поле даты
+    const dateError = document.getElementById('dateError'); // Получаем элемент для сообщения об ошибке
+
+    // Обработчик отправки формы
+    appointmentForm.addEventListener('submit', function (e) {
+        e.preventDefault(); // Останавливаем стандартное поведение формы
+
+        // Проверка выбранной даты
+        const selectedDate = dateInput.value;
+        if (unavailableDates.includes(selectedDate)) {
+            // Если дата недоступна, показываем ошибку и не отправляем форму
+            dateError.style.display = 'block';
+        } else {
+            // Если дата доступна, скрываем ошибку и показываем сообщение об успешной записи
+            dateError.style.display = 'none';
+            // Скрываем форму и показываем сообщение об успехе
+            appointmentForm.style.display = 'none';
+            successMessage.style.display = 'block';
+
+            // Закрытие модального окна через 5 секунд
+            setTimeout(function () {
+                modal.style.display = 'none';
+            }, 5000);
+        }
+    });
+});
+
+</script>
+</body>
+</html>
